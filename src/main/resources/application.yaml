@@ -1,0 +1,49 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: order_service
+
+
+  #  datasource:
+  #    url: ${SPRING_DATASOURCE_URL}
+  #    username: ${SPRING_DATASOURCE_USERNAME}
+  #    password: ${SPRING_DATASOURCE_PASSWORD}
+  #    hikari:
+  #      auto-commit: false
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        default-requeue-rejected: false
+#        acknowledge-mode: manual
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: my-json-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      max-poll-records: 500
+
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
+#    show-sql: ${SPRING_JPA_SHOW_SQL:true}
+#    properties:
+#      hibernate.format_sql: true
+#
+#  liquibase:
+#    enabled: true
+
