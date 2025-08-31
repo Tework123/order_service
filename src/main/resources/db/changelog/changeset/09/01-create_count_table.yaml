@@ -7,11 +7,9 @@ databaseChangeLog:
       comments: Создание таблицы count для хранения счетчиков
 
       preConditions:
-        onFail: HALT
-        onError: HALT
-          - not:
-              - tableExists:
-                  tableName: count
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: count
 
       changes:
         - createTable:
@@ -26,6 +24,16 @@ databaseChangeLog:
               - column:
                   name: count
                   type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: route_event_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: count_status
+                  type: text
                   constraints:
                     nullable: false
               - column:

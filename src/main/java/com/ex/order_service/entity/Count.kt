@@ -1,9 +1,7 @@
 package com.ex.order_service.entity
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import com.ex.order_service.enums.CountStatus
+import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import java.time.LocalDateTime
 import java.util.*
@@ -14,8 +12,16 @@ class Count(
     @Id
     @GeneratedValue
     val id: UUID? = null,
+
     var count: Int,
+
+    @Column(name = "route_event_id")
+    var routeEventId: UUID,
+
+    @Column(name = "count_status")
+    var countStatus: CountStatus,
+
     @CreationTimestamp
-    var createDt: LocalDateTime?,
+    var createDt: LocalDateTime? = null,
 )
 

@@ -8,13 +8,13 @@ import java.util.*
 
 
 data class SendRouteEventsRequestDto(
-    val courierId: UUID?,
-    val orderId: UUID?,
-    var routeEvents: List<RouteEventDto>?
+    val courierId: UUID,
+    val orderId: UUID,
+    var routeEvents: List<RouteEventDto>
 ) {
 
     data class RouteEventDto(
-        val routeEventId: UUID?,
+        val routeEventId: UUID,
         val locationPoint: LocationPointDto?,
         val routeEventStatus: RouteEventStatus?,
         val weatherStatus: WeatherStatus?,
@@ -23,16 +23,12 @@ data class SendRouteEventsRequestDto(
         val message: String?
     )
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
-    class LocationPointDto {
-        private val locationPointId: UUID? = null
-        private val longitude = 0.0
-        private val latitude = 0.0
-        private val timestamp: LocalDateTime? = null
-        private val timeCreate: LocalDateTime? = null
-    }
+
+    data class LocationPointDto(
+        val locationPointId: UUID,
+        val longitude: Double = 0.0,
+        val latitude: Double = 0.0,
+        val timestamp: LocalDateTime? = null,
+        val timeCreate: LocalDateTime? = null
+    )
 }
