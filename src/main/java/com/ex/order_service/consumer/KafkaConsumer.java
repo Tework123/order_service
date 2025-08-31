@@ -15,6 +15,7 @@ public class KafkaConsumer {
         this.objectMapper = jacksonObjectMapper;
     }
 
+    //    проверял группы консумеров
     @KafkaListener(topics = "my-topic", groupId = "my-json-group-2")
     public void listen(String message) {
         try {

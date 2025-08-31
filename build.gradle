@@ -2,6 +2,9 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.4'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.25'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.9.25'
+    id("org.jetbrains.kotlin.plugin.jpa") version "1.9.25"
 }
 
 group = 'com.ex'
@@ -21,15 +24,26 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    implementation 'org.springframework.boot:spring-boot-starter-amqp' // RabbitMQ
-    implementation("org.springframework.kafka:spring-kafka:3.3.8")
+    implementation 'org.liquibase:liquibase-core:4.33.0'
+    implementation 'org.postgresql:postgresql:42.7.7'
+
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation "org.springframework.kafka:spring-kafka:3.3.8"
+
+// kotlin
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 }
 
 tasks.named('test') {

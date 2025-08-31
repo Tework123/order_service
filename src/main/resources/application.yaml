@@ -5,6 +5,13 @@ spring:
   application:
     name: order_service
 
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    hikari:
+      auto-commit: false
+
 
   #  datasource:
   #    url: ${SPRING_DATASOURCE_URL}
